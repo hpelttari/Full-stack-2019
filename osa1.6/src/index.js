@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display = ({ text, value}) => (
-     <div>{text}: {value}
-     <br/>
+const Display = ({ text, value , ending}) => (
+     <div>{text}: {value} {ending}
      </div>
 )
 
@@ -18,6 +17,7 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [average, setAverage] = useState(0)
 
   return (
     <div>
@@ -29,9 +29,12 @@ const App = () => {
         <br/>
         <strong> Statistiikka </strong>
         <br/>
-        <Display text = "hyvä" value = {good} />
-        <Display text = "neutraal" value = {neutral} />
-        <Display text = "huono" value = {bad} />
+        <Display text = "hyvä" value = {good} ending="" />
+        <Display text = "neutraal" value = {neutral} ending=""/>
+        <Display text = "huono" value = {bad} ending=""/>
+        <Display text = "yhteensä" value = {good+bad+neutral} ending=""/>
+        <Display text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
+        <Display text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
     </div>
   )
 }
