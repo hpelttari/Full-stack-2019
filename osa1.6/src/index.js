@@ -12,7 +12,9 @@ const Button = (props) => (
   </button>
 )
 
-const Statistics = ({ good, bad, neutral}) => (
+const Statistics = ({ good, bad, neutral}) => {
+  if (good+bad+neutral >0) {
+  return (
   <div>
   <Display text = "hyvä" value = {good} ending="" />
   <Display text = "neutraal" value = {neutral} ending=""/>
@@ -21,7 +23,11 @@ const Statistics = ({ good, bad, neutral}) => (
   <Display text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
   <Display text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
   </div>
-)
+  )}
+    else return (
+      <div>Ei yhtään palautetta annettu</div>
+    )
+}
 
 const App = () => {
   // tallenna napit omaan tilaansa
