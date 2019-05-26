@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display = ({ text, value , ending}) => (
-     <div>{text}: {value} {ending}
-     </div>
-)
 
 const Button = (props) => (
   <button onClick={props.handleClick}>
@@ -15,14 +11,16 @@ const Button = (props) => (
 const Statistics = ({ good, bad, neutral}) => {
   if (good+bad+neutral >0) {
   return (
-  <div>
-  <Statistic text = "hyvä" value = {good} ending="" />
-  <Statistic text = "neutraal" value = {neutral} ending=""/>
-  <Statistic text = "huono" value = {bad} ending=""/>
-  <Statistic text = "yhteensä" value = {good+bad+neutral} ending=""/>
-  <Statistic text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
-  <Statistic text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
-  </div>
+  <table>
+    <tbody>
+      <Statistic text = "hyvä" value = {good} ending="" />
+      <Statistic text = "neutraal" value = {neutral} ending=""/>
+      <Statistic text = "huono" value = {bad} ending=""/>
+      <Statistic text = "yhteensä" value = {good+bad+neutral} ending=""/>
+      <Statistic text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
+      <Statistic text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
+    </tbody>
+  </table>
   )}
     else return (
       <div>Ei yhtään palautetta annettu</div>
@@ -30,7 +28,10 @@ const Statistics = ({ good, bad, neutral}) => {
 }
 
 const Statistic = ({ text, value, ending }) => (
-  <div><Display text = {text} value = {value} ending={ending} /></div>
+  <tr>
+  <td>{text}:</td>
+  <td>{value} {ending}</td>
+  </tr>
 )
 
 const App = () => {
@@ -38,7 +39,6 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  const [average, setAverage] = useState(0)
 
   return (
     <div>
