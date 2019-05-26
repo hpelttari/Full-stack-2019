@@ -16,18 +16,22 @@ const Statistics = ({ good, bad, neutral}) => {
   if (good+bad+neutral >0) {
   return (
   <div>
-  <Display text = "hyvä" value = {good} ending="" />
-  <Display text = "neutraal" value = {neutral} ending=""/>
-  <Display text = "huono" value = {bad} ending=""/>
-  <Display text = "yhteensä" value = {good+bad+neutral} ending=""/>
-  <Display text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
-  <Display text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
+  <Statistic text = "hyvä" value = {good} ending="" />
+  <Statistic text = "neutraal" value = {neutral} ending=""/>
+  <Statistic text = "huono" value = {bad} ending=""/>
+  <Statistic text = "yhteensä" value = {good+bad+neutral} ending=""/>
+  <Statistic text = "keskiarvo" value = {(good+bad+neutral)/3} ending=""/>
+  <Statistic text = "positiivisia" value = {good/(good+bad+neutral)*100} ending="%"/>
   </div>
   )}
     else return (
       <div>Ei yhtään palautetta annettu</div>
     )
 }
+
+const Statistic = ({ text, value, ending }) => (
+  <div><Display text = {text} value = {value} ending={ending} /></div>
+)
 
 const App = () => {
   // tallenna napit omaan tilaansa
