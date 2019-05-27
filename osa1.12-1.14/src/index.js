@@ -20,12 +20,21 @@ const App = (props) => {
   
     return (
       <div>
+        <strong>Anecdote of the day</strong>
+        <br/>
         {props.anecdotes[selected]}
         <br/>
         has {votes[selected]} votes
         <br/>
         <Button handleClick={() => handleVotes()} text="vote" />
         <Button handleClick={() => setSelected(Math.floor(Math.random()*6))} text="next anecdote" />
+        <br/>
+        <br/>
+        <strong>Anecdote with most votes</strong>
+        <br/>
+        {props.anecdotes[Object.keys(votes).reduce((a, b) => votes[a] > votes[b] ? a : b)]}
+        <br/>
+        has {votes[Object.keys(votes).reduce((a, b) => votes[a] > votes[b] ? a : b)]} votes
       </div>
     )
   }
