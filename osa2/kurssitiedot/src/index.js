@@ -31,6 +31,8 @@ const Course = ({ course })=> {
   )
 }
 
+
+
 const App = () => {
   const course = {
     name: 'Half Stack -sovelluskehitys',
@@ -53,9 +55,12 @@ const App = () => {
     ]
   }
 
+  const total = course.parts.map(part => part.exercises).reduce( (s, p) => s + p )
+
   return (
     <div>
       <Course course={course} />
+      <div>yhteensä {total} tehtävää</div>
     </div>
   )
 }
