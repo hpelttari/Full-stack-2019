@@ -4,14 +4,20 @@ import Person from './components/Person'
 
 const App = () => {
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas',
+      number: "040-1234567" 
+    }
   ]) 
-  const [ newPerson, setNewPerson ] = useState('')
+  
+  const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
+
 
   const addPerson = (event) => {
     event.preventDefault()
     const personObject = {
-      name : newPerson
+      name : newName,
+      number : newNumber
     }
 
     let names = persons.map(person => person.name)
@@ -20,23 +26,27 @@ const App = () => {
       alert(`${personObject.name} is already added to phonebook`)
     } else{
       setPersons(persons.concat(personObject))
-      setNewPerson('')
+      setNewName('')
+      setNewNumber('')
     }
   }
 
-  const handlePersonChange = (event) => {
-    setNewPerson(event.target.value)
+  const handleNameChange = (event) => {
+    setNewName(event.target.value)
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
       <form onSubmit={addPerson}>
-        <div>
-          nimi: <input 
-          value={newPerson}
-          onChange={handlePersonChange}/>
-        </div>
+        <div>Nimi: <input value={newName}
+          onChange={handleNameChange} /></div>
+          <div>Numero: <input value={newNumber}
+          onChange={handleNumberChange}/></div>
         <div>
           <button type="submit">lisää</button>
         </div>
