@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import Person from './components/Person'
+import Persons from './components/Persons'
+import Filter from './components/Filter'
+import AddPerson from './components/AddPerson';
 
 
 const App = () => {
@@ -54,22 +56,13 @@ const App = () => {
     <div>
       <h2>Puhelinluettelo</h2>
       
-      <div>Rajaa näytettäviä <input value={condition}
-          onChange={handleConditionChange}/></div>
+      <div>Rajaa näytettäviä {<Filter condition={condition} handleConditionChange={handleConditionChange}/>}</div>
 
       <h2>Lisää uusi</h2>
+        {<AddPerson addPerson={addPerson} newName={newName} newNumber={newNumber} handleNumberChange={handleNumberChange} handleNameChange={handleNameChange}/>}
 
-      <form onSubmit={addPerson}>
-        <div>Nimi: <input value={newName}
-          onChange={handleNameChange} /></div>
-          <div>Numero: <input value={newNumber}
-          onChange={handleNumberChange}/></div>
-        <div>
-          <button type="submit">lisää</button>
-        </div>
-      </form>
       <h2>Numerot</h2>
-        {filtered.map(person => <Person key={person.name} person={person}/>)}
+        {<Persons persons={filtered}/>}
     </div>
   )
 
